@@ -71,7 +71,9 @@ jobs:
         cd zephyrproject
         west update
         cd zephyr
-        git log --format="%H" -n 1 > $GITHUB_WORKSPACE/zephyr_ci_repo/SHA_$(date -u -I'date').txt
+        echo $GITHUB_WORKSPACE
+        ls $GITHUB_WORKSPACE
+        git log --format="%H" -n 1 > $GITHUB_WORKSPACE/SHA_zephyr_master.txt
       shell: bash
     - name: update dependencies
       run: |
