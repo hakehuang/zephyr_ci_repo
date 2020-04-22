@@ -79,21 +79,31 @@ jobs:
       run: |
         cd ~/zephyrproject/zephyr/scripts
         pip install -r requirements.txt
+    - name: free disk space
+      run: |
+        sudo swapoff -a
+        sudo rm -f /swapfile
+        sudo apt clean
+        docker rmi $(docker image ls -aq)
+        df -h
+  qemu_cortex_m0:
+    runs-on: ubuntu-18.04
+    needs: build
+    steps:
     - name: build qemu_cortex_m0
       run: |
         cd ~/zephyrproject/zephyr
         source zephyr-env.sh
         scripts/sanitycheck  --device-testing -p qemu_cortex_m0
+  qemu_cortex_m3:
+    runs-on: ubuntu-18.04
+    needs: build
+    steps:
     - name: build qemu_cortex_m3
       run: | 
         cd ~/zephyrproject/zephyr
         source zephyr-env.sh
         scripts/sanitycheck  --device-testing -p qemu_cortex_m3
-    - name: build qemu_cortex_a53
-      run: |
-        cd ~/zephyrproject/zephyr
-        source zephyr-env.sh
-        scripts/sanitycheck  --device-testing -p qemu_cortex_a53
     - name: Commit files
       run: |
         git config --local user.email "hakehuang@github.com"
