@@ -104,6 +104,10 @@ jobs:
         cd ~/zephyrproject/zephyr
         source zephyr-env.sh
         scripts/sanitycheck  --device-testing -p qemu_cortex_m3
+  report:
+    runs-on: ubuntu-18.04
+    needs: build
+    steps:
     - name: Commit files
       run: |
         git config --local user.email "hakehuang@github.com"
