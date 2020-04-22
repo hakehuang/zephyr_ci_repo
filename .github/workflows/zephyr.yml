@@ -30,7 +30,9 @@ jobs:
       run: |
         pip3 install pytest west pyelftools
     - name: install  multi-purpose west tool
-      run: sudo apt install --no-install-recommends git cmake ninja-build gperf
+      run: |
+        sudo apt update
+        sudo apt install --no-install-recommends git cmake ninja-build gperf
       shell: bash
     - name : install tool2
       run : sudo apt install ccache dfu-util device-tree-compiler wget
@@ -39,7 +41,9 @@ jobs:
       run: sudo apt install python3-pip python3-setuptools python3-tk python3-wheel xz-utils file
       shell : bash
     - name : install tool4
-      run: sudo apt install make gcc gcc-multilib g++-multilib libsdl2-dev
+      run: |
+        sudo apt autoremove 
+        sudo apt install --fix-missing make gcc gcc-multilib g++-multilib libsdl2-dev
       shell: bash
     - name: install cmake
       run : |
