@@ -86,12 +86,14 @@ jobs:
         sudo apt clean
         docker rmi $(docker image ls -aq)
         df -h
+        date
   qemu_cortex_m0:
     runs-on: ubuntu-18.04
     needs: build
     steps:
     - name: build qemu_cortex_m0
       run: |
+        date
         cd ~/zephyrproject/zephyr
         source zephyr-env.sh
         scripts/sanitycheck  --device-testing -p qemu_cortex_m0
@@ -100,7 +102,8 @@ jobs:
     needs: build
     steps:
     - name: build qemu_cortex_m3
-      run: | 
+      run: |
+        date 
         cd ~/zephyrproject/zephyr
         source zephyr-env.sh
         scripts/sanitycheck  --device-testing -p qemu_cortex_m3
@@ -110,6 +113,8 @@ jobs:
     steps:
     - name: Commit files
       run: |
+        pwd
+        date
         git config --local user.email "hakehuang@github.com"
         git config --local user.name "Hake Huang"
         git commit -m "zephyr build $(date -u -I'date')" -a
