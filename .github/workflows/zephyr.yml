@@ -93,12 +93,13 @@ jobs:
         date
         cd ~/zephyrproject/zephyr
         source zephyr-env.sh
-        scripts/sanitycheck  --device-testing -p qemu_cortex_m0
+        scripts/sanitycheck  --device-testing -p qemu_cortex_m0 -o ~/
     - name: Commit files
       run: |
         pwd
         cd $GITHUB_WORKSPACE
         pwd
+        ls ~/
         date
         git config --local user.email "hakehuang@github.com"
         git config --local user.name "Hake Huang"
