@@ -101,6 +101,7 @@ jobs:
         date
         git config --local user.email "hakehuang@github.com"
         git config --local user.name "Hake Huang"
+        git add  $GITHUB_WORKSPACE/SHA_zephyr_master.txt
         git commit -m "zephyr build $(date -u -I'date')" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
