@@ -87,32 +87,16 @@ jobs:
         docker rmi $(docker image ls -aq)
         df -h
         date
-  qemu_cortex_m0:
-    runs-on: ubuntu-18.04
-    needs: build
-    steps:
     - name: build qemu_cortex_m0
       run: |
         date
         cd ~/zephyrproject/zephyr
         source zephyr-env.sh
         scripts/sanitycheck  --device-testing -p qemu_cortex_m0
-  qemu_cortex_m3:
-    runs-on: ubuntu-18.04
-    needs: build
-    steps:
-    - name: build qemu_cortex_m3
-      run: |
-        date 
-        cd ~/zephyrproject/zephyr
-        source zephyr-env.sh
-        scripts/sanitycheck  --device-testing -p qemu_cortex_m3
-  report:
-    runs-on: ubuntu-18.04
-    needs: build
-    steps:
     - name: Commit files
       run: |
+        pwd
+        cd $GITHUB_WORKSPACE
         pwd
         date
         git config --local user.email "hakehuang@github.com"
