@@ -105,7 +105,9 @@ jobs:
         git config --local user.name "Hake Huang"
         git add  $GITHUB_WORKSPACE/SHA_zephyr_master.txt
         git commit -m "zephyr build $(date -u -I'date')" -a
+      continue-on-error: true
     - name: Push changes
       uses: ad-m/github-push-action@master
+      continue-on-error: true
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
